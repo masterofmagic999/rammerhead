@@ -13,7 +13,7 @@ RUN npm install --production=false && \
 # Copy application source files
 COPY . .
 
-# Build the application (creates optimized client-side files)
+# Build the application (creates optimized client-side files in src/client)
 RUN npm run build
 
 # Production stage
@@ -28,7 +28,7 @@ COPY package*.json ./
 RUN npm install --production && \
     npm cache clean --force
 
-# Copy built application from builder stage
+# Copy application files from builder stage
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/public ./public
 
