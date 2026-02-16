@@ -1,0 +1,34 @@
+# Git files
+.git
+.gitignore
+
+# Node modules (will be installed in container)
+node_modules
+
+# Cache and session directories (will be created in container)
+cache-js
+sessions
+
+# Development files
+.vscode
+.eslintrc.json
+.eslintignore
+.prettierrc.json
+.prettierignore
+
+# Documentation
+README.md
+CHANGELOG.md
+
+# Logs
+*.log
+npm-debug.log*
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Temporary files
+tmp
+temp
+*.tmp
