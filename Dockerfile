@@ -32,15 +32,21 @@ RUN npm install --production && \
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/public ./public
 
+# Copy Hugging Face Spaces configuration
+COPY --from=builder /app/config.hf.js ./config.js
+
 # Create necessary directories for cache and sessions
 RUN mkdir -p cache-js sessions
 
-# Expose the main application port and cross-domain port
-# Note: Back4app may assign different PORT via environment variable
-EXPOSE 8080 8081
+# Expose the default port for Hugging Face Spaces
+# The application will use PORT environment variable if provided
+EXPOSE 7860
 
 # Set environment to production
 ENV NODE_ENV=production
+
+# Hugging Face Spaces uses PORT environment variable
+ENV PORT=7860
 
 # Start the application server
 CMD ["npm", "start"]
