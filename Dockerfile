@@ -32,7 +32,8 @@ RUN npm install --production && \
 COPY --from=builder /app/src ./src
 COPY --from=builder /app/public ./public
 
-# Copy Hugging Face Spaces configuration
+# Copy Hugging Face Spaces configuration as config.js
+# This overrides default settings for containerized HF Spaces deployment
 COPY --from=builder /app/config.hf.js ./config.js
 
 # Create necessary directories for cache and sessions

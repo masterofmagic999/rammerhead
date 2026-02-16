@@ -4,7 +4,7 @@
 const path = require('path');
 
 // Hugging Face Spaces provides PORT environment variable (default 7860)
-const port = parseInt(process.env.PORT || '7860');
+const port = parseInt(process.env.PORT || '7860', 10);
 
 module.exports = {
     // Bind to all interfaces (required for containerized deployments)
@@ -20,6 +20,7 @@ module.exports = {
     enableWorkers: false,
     
     // Server info for Hugging Face Spaces
+    // Note: req should always be provided, but we use optional chaining for safety
     getServerInfo: (req) => {
         const hostname = req?.headers?.host?.split(':')[0] || 'localhost';
         return {
